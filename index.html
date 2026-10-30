@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0D0D0F">
+<title>Astra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+  <nav id="pivotstrip" aria-label="Sections"></nav>
+
+  <main id="panorama">
+    <section class="hub" id="hub-subs" data-hub="subs" aria-label="Subscriptions">
+      <h2 class="hubtitle">subscriptions</h2>
+      <div class="hubbody" id="subs-body"></div>
+    </section>
+
+    <section class="hub" id="hub-feed" data-hub="feed" aria-label="Posts">
+      <h2 class="hubtitle" id="feed-title">popular</h2>
+      <div class="pivot" id="feed-sorts" role="tablist" aria-label="Sort"></div>
+      <div class="hubbody" id="feed-body"></div>
+    </section>
+
+    <section class="hub" id="hub-thread" data-hub="thread" aria-label="Thread">
+      <h2 class="hubtitle" id="thread-title">thread</h2>
+      <div class="hubbody" id="thread-body"><p class="empty">Select a post from the feed to view it here.</p></div>
+    </section>
+
+    <section class="hub" id="hub-search" data-hub="search" aria-label="Search">
+      <h2 class="hubtitle">search</h2>
+      <div class="hubbody" id="search-body"></div>
+    </section>
+  </main>
+
+  <footer id="appbar" aria-label="Actions"></footer>
+</div>
+
+<div id="toasts" aria-live="polite"></div>
+<dialog id="dlg"></dialog>
+
+<noscript><p style="padding:24px">JavaScript is required to use Astra.</p></noscript>
+<script src="md.js"></script>
+<script src="api.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
