@@ -176,6 +176,7 @@
     home: 'M4 11l8-7 8 7v9h-5v-6H9v6H4z',
     mail: 'M4 6h16v12H4zM4 7l8 6 8-6',
     trash: 'M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6',
+    restore: 'M4 12a8 8 0 102.3-5.7M4 4v5h5M12 8v4l3 2',
     sliders: 'M4 7h10M18 7h2M4 17h2M10 17h10M14 5v4M6 15v4',
     person: 'M12 12a4 4 0 100-8 4 4 0 000 8zM4 21a8 8 0 0116 0',
     link: 'M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1'
@@ -820,9 +821,9 @@
 
   function bannerHTML(m) {
     if (m.recovered) {
-  return '<div class="banner">Recovered</div>';
+  return '<div class="banner" role="img" aria-label="Recovered" title="Recovered">' + icon('restore') + '</div>';
 }
-if (m.removedOnReddit) return '<div class="banner">Deleted</div>';
+if (m.removedOnReddit) return '<div class="banner" role="img" aria-label="Deleted" title="Deleted">' + icon('trash') + '</div>';
 return '';
   }
   function mediaThumb(m, big) {
@@ -1204,9 +1205,12 @@ return '';
     const folded = S.folded.has(c.id);
     const sc = scoreOf(c.name, c.score, c.likes);
     let tag = '';
-    if (rec) tag = '<span class="tag ' + (rec === 'A' ? 'a' : 'p') + '">recovered · ' + (rec === 'A' ? 'Arctic Shift' : 'PullPush') + (c.captureSec != null ? ' · +' + dur(Math.max(0, c.captureSec)) : '') + '</span>';
+    if (rec) {
+      const rl = 'Recovered · ' + (rec === 'A' ? 'Arctic Shift' : 'PullPush') + (c.captureSec != null ? ' · +' + dur(Math.max(0, c.captureSec)) : '');
+      tag = '<span class="tag ' + (rec === 'A' ? 'a' : 'p') + '" role="img" aria-label="' + rl + '" title="' + rl + '">' + icon('restore') + '</span>';
+    }
     else if (c.archiveOnly) tag = '<span class="tag ' + (c.src === 'A' ? 'a' : 'p') + '" role="img" aria-label="Deleted" title="Deleted">' + icon('trash') + '</span>';
-    else if (gone) tag = '<span class="tag mute">' + (c.body === '[removed]' ? 'removed' : 'deleted') + '</span>';
+    else if (gone) tag = '<span class="tag mute" role="img" aria-label="' + (c.body === '[removed]' ? 'Removed' : 'Deleted') + '" title="' + (c.body === '[removed]' ? 'Removed' : 'Deleted') + '">' + icon('trash') + '</span>';
     const au = showOrig ? c.reddit.author : c.author;
     const kids = n.kids.map((k) => cNode(k, keep)).join('');
     const hl = S.hl && S.hl === c.id;
